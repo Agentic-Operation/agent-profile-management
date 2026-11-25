@@ -6,7 +6,7 @@ role, mobility, ODA relationship), scope, architecture, capabilities (core tasks
 ecosystem, coordination/multi-agent behavior, UX, security & governance (ODP-EL deontic constraints,
 impact radius), metrics, and deployment considerations.
 
-- **Status:** Draft — Phase 0 comms pack merged-pending; **Phase 1**: normative `spec/SPEC-443.md` v1.0.0-alpha on `vibe/spec-draft-5a1ad6`. Successor of TM Forum **TMF443 v1.0.0** (alpha);
+- **Status:** Draft — `spec/SPEC-443.md` v1.0.0-alpha merged on `main` (PRs #1–#3); comms pack canonical in [agent-standard-docs](https://github.com/Agentic-Operation/agent-standard-docs). Successor of TM Forum **TMF443 v1.0.0** (alpha);
   extensions are tracked in `spec/annexes/delta-vs-TMF44X.md`.
 - **License:** Apache-2.0
 
@@ -19,8 +19,8 @@ impact radius), metrics, and deployment considerations.
 | Source | Spec-445 | [`agent-discovery-card`](https://github.com/Agentic-Operation/agent-discovery-card) |
 
 Join keys across the triad: identity fields (`id`, `uuid`, `version`, `provider`, CID, `integrity_wrapper`),
-skill IDs (`TMF-OASF <n>` / `TMF-GB1033 F-xxxx`), bidirectional companion pointers — see
-[docs/communication/00-triad-overview.md](docs/communication/00-triad-overview.md).
+skill IDs (`TMF-OASF <n>` / `TMF-GB1033 F-xxxx`), bidirectional companion pointers — see the
+[triad overview](https://github.com/Agentic-Operation/agent-standard-docs/blob/main/communication/00-triad-overview.md) in agent-standard-docs.
 
 ## Repository map
 
@@ -34,7 +34,7 @@ skill IDs (`TMF-OASF <n>` / `TMF-GB1033 F-xxxx`), bidirectional companion pointe
 | `tools/cli/` | `spec443 lint/publish` CLI |
 | `integrations/` | Model authority refs, ODA/eTOM/SID mappings |
 | `user-tools/` | Authoring templates, SDK snippets |
-| `docs/communication/` | Audience one-pagers (canonical triad pack lives here) |
+| `docs/communication/` | Pointer to the canonical comms pack in [agent-standard-docs](https://github.com/Agentic-Operation/agent-standard-docs) |
 | `docs/guides/` | Task guides and quickstarts |
 | `docs/architecture/` | Mermaid diagrams (triad, lifecycle) |
 | `docs/references/` | Related sources + authority precedence (canonical) |
@@ -42,7 +42,7 @@ skill IDs (`TMF-OASF <n>` / `TMF-GB1033 F-xxxx`), bidirectional companion pointe
 ## Quickstart
 
 See [docs/guides/quickstart-author-a-profile.md](docs/guides/quickstart-author-a-profile.md) and the
-audience one-pager [docs/communication/01-define-your-agent.md](docs/communication/01-define-your-agent.md).
+audience one-pager [01-define-your-agent](https://github.com/Agentic-Operation/agent-standard-docs/blob/main/communication/01-define-your-agent.md) in agent-standard-docs.
 
 ## Contributing
 
