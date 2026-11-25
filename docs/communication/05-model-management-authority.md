@@ -17,7 +17,7 @@ The normative record schema lives in the Spec-444 annex
 
 ## Structured assignment chain
 
-```
+```text
 Model (authority record)
    │  resolved to a pinned, signed version
    ▼
