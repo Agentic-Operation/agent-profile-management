@@ -47,3 +47,15 @@ audience one-pager [docs/communication/01-define-your-agent.md](docs/communicati
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). Branch convention `vibe/<slug>-5a1ad6`, draft PRs.
+
+## Runtime services (this org)
+
+| Service | Repo |
+|---|---|
+| Agent Card Registry | [Agent-Registry](https://github.com/Agentic-Operation/Agent-Registry) |
+| Model Management Authority | [model-authority](https://github.com/Agentic-Operation/model-authority) |
+| Rollout controller | [agent-rollout-controller](https://github.com/Agentic-Operation/agent-rollout-controller) |
+| Orchestrator (swarm/hierarchy; consumes this repo's §6.4 topology) | [agent-orchestrator](https://github.com/Agentic-Operation/agent-orchestrator) |
+| Tool & MCP manager | [tool-mcp-manager](https://github.com/Agentic-Operation/tool-mcp-manager) |
+| Conformance kit | [agent-conformance](https://github.com/Agentic-Operation/agent-conformance) |
+| Published docs / comms pack (canonical) | [agent-standard-docs](https://github.com/Agentic-Operation/agent-standard-docs) |
