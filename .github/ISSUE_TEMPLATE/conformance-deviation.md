@@ -9,6 +9,6 @@ labels: conformance
 
 **Class** ([R] absent, [O] added non-conformantly)
 
-**Justification**
+#### Justification
 
-**Approver and date**
+#### Approver and date

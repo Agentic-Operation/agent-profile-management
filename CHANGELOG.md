@@ -3,7 +3,9 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions follow SemVer.
 
 ## [Unreleased]
+
 ### Added
+
 - Phase 0 communication package: triad overview, audience one-pagers, model management authority
   overview, glossary, FAQ, conformance cheat sheet, worked-example walkthrough, references index,
   architecture diagrams (mermaid).

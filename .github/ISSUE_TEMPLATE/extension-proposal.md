@@ -3,7 +3,7 @@ name: Extension proposal
 about: Propose a new field, section, or validator for this spec
 labels: enhancement
 ---
-**Proposal**
+#### Proposal
 
 **TMF44X origin section** it extends (for delta annex)
 
@@ -11,4 +11,4 @@ labels: enhancement
 
 **Join-key impact** (identity fields, skill IDs, cross-check manifest, sibling repos)
 
-**Example payload**
+#### Example payload
