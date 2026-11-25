@@ -34,4 +34,4 @@ jobs:
         with: {python-version: '3.12'}
       - run: pip install pyyaml
       - run: export SPEC443_SCHEMAS=$PWD/schemas SPEC444_SCHEMAS=$PWD/sibling/bootstrap/schemas SPEC445_SCHEMAS=$PWD/sibling/card/schemas
-      - run: python sibling/conformance/validators/crosscheck.py --profile examples/loyalty-agent/profile.json --bootstrap sibling/bootstrap/examples/loyalty-agent/bootstrap.yaml --card sibling/card/examples/loyalty-agent/card.json
+      - run: if [ -f sibling/conformance/validators/crosscheck.py ]; then python sibling/conformance/validators/crosscheck.py --profile examples/loyalty-agent/profile.json --bootstrap sibling/bootstrap/examples/loyalty-agent/bootstrap.yaml --card sibling/card/examples/loyalty-agent/card.json; else python conformance-kit/validators/crosscheck.py --profile examples/loyalty-agent/profile.json --bootstrap sibling/bootstrap/examples/loyalty-agent/bootstrap.yaml --card sibling/card/examples/loyalty-agent/card.json; fi
