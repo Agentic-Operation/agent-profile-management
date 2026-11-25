@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://specs.agentic-operation.dev/spec-443/profile.schema.json",
+  "title": "Spec-443 AI Agent Profile (machine-readable instance)",
+  "type": "object",
+  "required": ["id", "name", "uuid", "version", "provider", "classification", "core_tasks", "skills", "security"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-_]*$"},
+    "name": {"type": "string", "minLength": 1, "maxLength": 256},
+    "uuid": {"type": "string", "format": "uuid"},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[a-z0-9.]+)?$"},
+    "provider": {"type": "string", "minLength": 1},
+    "content_identifier_cid": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+    "integrity_wrapper": {
+      "type": "object",
+      "required": ["signature_type", "issuer", "transparency_log"],
+      "properties": {
+        "signature_type": {"type": "string", "examples": ["Sigstore-OIDC"]},
+        "issuer": {"type": "string", "format": "uri"},
+        "transparency_log": {"type": "string", "format": "uri"}
+      }
+    },
+    "status": {"enum": ["Draft", "In Review", "Approved", "Deprecated"]},
+    "classification": {
+      "type": "object",
+      "required": ["autonomy_level", "agency_class", "automation_role", "oda_relationship"],
+      "properties": {
+        "autonomy_level": {"enum": ["L1", "L2", "L3", "L4", "L5"]},
+        "agency_class": {"enum": ["Agentic AI", "Non-Agentic AI"]},
+        "intelligence_class": {"enum": ["Simple Reflex", "Model-Based Reflex", "Goal-Based", "Utility-Based", "Learning", "Utility-Based Learning"]},
+        "automation_role": {"enum": ["Worker Agent", "Planner Agent", "Orchestrator Agent"]},
+        "mobility": {"enum": ["Static", "Single-Environment", "Cross-Environment"]},
+        "oda_relationship": {"enum": ["Standalone", "Agentified ODA Component", "ODA-Adjacent"]}
+      }
+    },
+    "spec444_bootstrap_ref": {"type": "string"},
+    "spec445_agent_card_ref": {"type": "string"},
+    "core_tasks": {"type": "array", "minItems": 3, "maxItems": 10, "items": {"type": "string", "minLength": 1}},
+    "skills": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "bound_core_task", "source_taxonomy"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^(TMF-OASF [0-9]+|TMF-GB1033 F-[0-9]+|EXTENSION-[A-Za-z0-9-]+)$"},
+          "name": {"type": "string"},
+          "description": {"type": "string", "maxLength": 1024},
+          "bound_core_task": {"type": "string"},
+          "source_taxonomy": {"enum": ["OASF Skill Taxonomy", "GB1033 Functional Framework", "eTOM", "TM Forum Custom", "EXTENSION"]}
+        }
+      }
+    },
+    "components": {
+      "type": "object",
+      "properties": {
+        "learning_module": {"type": "object", "properties": {"present": {"type": "boolean"}, "model_id": {"type": "string"}, "model_version": {"type": "string"}}}
+      }
+    },
+    "coordination": {
+      "type": "object",
+      "properties": {
+        "posture": {"enum": ["Solo", "Participates as a member of a multi-agent system", "Orchestrates other agents"]},
+        "protocol": {"enum": ["a2a_jsonrpc", "rep", "wo_a", "mcp", "custom"]},
+        "variables": {"type": "array", "items": {"type": "object", "required": ["name", "publisher", "consumer"], "properties": {"name": {"type": "string"}, "publisher": {"type": "string"}, "consumer": {"type": "string"}}}},
+        "sensitivity_signals": {"type": "array", "items": {"type": "string"}},
+        "topology": {
+          "type": "object",
+          "properties": {
+            "pattern": {"enum": ["swarm", "hierarchy", "pipeline"]},
+            "orchestrator": {"type": "string"},
+            "members": {"type": "array", "items": {"type": "object", "required": ["agent_id", "role", "protocol"], "properties": {
+              "agent_id": {"type": "string"},
+              "role": {"enum": ["worker", "planner", "orchestrator"]},
+              "protocol": {"enum": ["a2a_jsonrpc", "rep", "wo_a", "mcp"]},
+              "autonomy_level": {"enum": ["L1", "L2", "L3", "L4", "L5"]}
+            }}}
+          }
+        }
+      }
+    },
+    "security": {
+      "type": "object",
+      "required": ["auth_scheme", "impact_radius"],
+      "properties": {
+        "auth_scheme": {"enum": ["OAuth 2.0 / OpenID Connect", "mTLS", "API Key", "Custom"]},
+        "impact_radius": {"enum": ["Low", "Medium", "High"]},
+        "deontic_embargoes": {"type": "array", "items": {"type": "string"}},
+        "deontic_burdens": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "executive_summary_outcomes": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "string"}},
+    "business_impact_metrics": {"type": "array", "items": {"type": "object", "required": ["metric", "baseline", "target"], "properties": {"metric": {"type": "string"}, "baseline": {"type": "string"}, "target": {"type": "string"}}}},
+    "learning_metrics": {"type": "array", "items": {"type": "object", "required": ["metric", "baseline", "target"], "properties": {"metric": {"type": "string"}, "baseline": {"type": "string"}, "target": {"type": "string"}, "model_id": {"type": "string"}, "model_version": {"type": "string"}}}},
+    "environment_prerequisites": {"type": "array", "items": {"type": "object", "required": ["environment", "prerequisite", "verification"], "properties": {"environment": {"type": "string"}, "prerequisite": {"type": "string"}, "verification": {"type": "string"}}}},
+    "maintenance": {"type": "object", "properties": {"maintenance_plan": {"type": "string"}, "autonomy_case_ref": {"type": "string", "format": "uri"}, "last_updated": {"type": "string", "format": "date-time"}}}
+  }
+}
