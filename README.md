@@ -6,7 +6,7 @@ role, mobility, ODA relationship), scope, architecture, capabilities (core tasks
 ecosystem, coordination/multi-agent behavior, UX, security & governance (ODP-EL deontic constraints,
 impact radius), metrics, and deployment considerations.
 
-- **Status:** Draft (Phase 0 — communication package). Successor of TM Forum **TMF443 v1.0.0** (alpha);
+- **Status:** Draft — Phase 0 comms pack merged-pending; **Phase 1**: normative `spec/SPEC-443.md` v1.0.0-alpha on `vibe/spec-draft-5a1ad6`. Successor of TM Forum **TMF443 v1.0.0** (alpha);
   extensions are tracked in `spec/annexes/delta-vs-TMF44X.md`.
 - **License:** Apache-2.0
 
@@ -26,7 +26,7 @@ skill IDs (`TMF-OASF <n>` / `TMF-GB1033 F-xxxx`), bidirectional companion pointe
 
 | Directory | Purpose |
 |---|---|
-| `spec/` | Normative Spec-443 text + annexes (delta vs TMF443, worked example, cross-check manifest, self-check) |
+| `spec/SPEC-443.md` | Normative Spec-443 v1.0.0-alpha + annexes (delta vs TMF443, cross-check manifest C1–C20, self-check) — **populated in Phase 1** |
 | `schemas/` | Machine-readable profile schema + valid/invalid test vectors |
 | `examples/loyalty-agent/` | Worked example instance of this artifact |
 | `conformance-kit/` | Validators, test suites, CI templates, runtime integrity check |
