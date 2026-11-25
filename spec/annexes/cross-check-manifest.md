@@ -17,7 +17,7 @@ non-conformant. All joins are string-equality unless noted.
 | C10 | §6.1 posture + protocol | `protocol_handlers` keys | `coordination.coordinationProtocol` | consistent |
 | C11 | §6.2 variables | — | `coordination.coordinationVariables` | subset match |
 | C12 | §6.4 topology | §4 protocol handlers | `coordination.topology_ref` | topology_ref points at this profile's §6.4 |
-| C13 | §8.3 `auth_scheme` | `security_config.auth.provider` | `authentication.schemes` | OAuth2/OIDC ⇒ `oauth2_oidc|keycloak` |
+| C13 | §8.3 `auth_scheme` | `security_config.auth.provider` | `authentication.schemes` | OAuth2/OIDC ⇒ ``oauth2_oidc|keycloak`` |
 | C14 | §8.1 deontic tokens | — | `deonticConstraints.embargoes/burdens` | subset match |
 | C15 | §8.4 impact radius | — | `impactRadius` | equal (low/medium/high) |
 | C16 | §9 metrics | `testing.acceptance_criteria` | — | metric names + thresholds match |
