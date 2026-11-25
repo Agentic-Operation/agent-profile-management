@@ -110,6 +110,7 @@ topology:
   coordination_variables: [names from 6.2]
   sensitivity_signals_ref: "section 6.3"
 ```
+
 Cross-checks: `orchestrator` requires `automation_role: Orchestrator Agent`; every `members[].agent_id`
 SHOULD resolve to a published Spec-445 card; Spec-445 carries the same topology in `coordination.topology_ref`.
 
