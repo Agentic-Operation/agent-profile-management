@@ -1,0 +1,193 @@
+{
+  "id": "loyalty-management-agent-v1",
+  "name": "Loyalty Management Agent",
+  "uuid": "9e3b2f5d-4a8c-4f6e-8b1d-7c9a2e5f3b6d",
+  "version": "1.0.0-stable",
+  "provider": "AI4X Contact Center Project Team",
+  "content_identifier_cid": "sha256:601255bf26a816d9845c753874d6d0ae7d5ff462ee0adfc5c8a0afed9a941b95",
+  "integrity_wrapper": {
+    "signature_type": "Sigstore-OIDC",
+    "issuer": "https://github.com/login/oauth",
+    "transparency_log": "https://rekor.sigstore.dev"
+  },
+  "status": "Approved",
+  "classification": {
+    "autonomy_level": "L3",
+    "agency_class": "Agentic AI",
+    "intelligence_class": "Utility-Based Learning",
+    "automation_role": "Worker Agent",
+    "mobility": "Cross-Environment",
+    "oda_relationship": "ODA-Adjacent"
+  },
+  "spec444_bootstrap_ref": "https://github.com/Agentic-Operation/agent-bootstrap-management/blob/main/examples/loyalty-agent/bootstrap.yaml",
+  "spec445_agent_card_ref": "https://github.com/Agentic-Operation/agent-discovery-card/blob/main/examples/loyalty-agent/card.json",
+  "core_tasks": [
+    "Member lifecycle orchestration",
+    "Real-time redemption validation",
+    "Tier management and status optimization",
+    "Churn risk intervention"
+  ],
+  "skills": [
+    {
+      "id": "TMF-OASF 3015",
+      "name": "loyalty.lifecycle.enrolment",
+      "bound_core_task": "Member lifecycle orchestration",
+      "source_taxonomy": "OASF Skill Taxonomy"
+    },
+    {
+      "id": "TMF-OASF 3016",
+      "name": "loyalty.lifecycle.tier_progression",
+      "bound_core_task": "Member lifecycle orchestration",
+      "source_taxonomy": "OASF Skill Taxonomy"
+    },
+    {
+      "id": "TMF-GB1033 F-1842",
+      "name": "redemption.multi_currency.validate",
+      "bound_core_task": "Real-time redemption validation",
+      "source_taxonomy": "GB1033 Functional Framework"
+    },
+    {
+      "id": "TMF-OASF 3020",
+      "name": "loyalty.tier.grace_period",
+      "bound_core_task": "Tier management and status optimization",
+      "source_taxonomy": "OASF Skill Taxonomy"
+    },
+    {
+      "id": "TMF-OASF 3021",
+      "name": "loyalty.tier.fast_track",
+      "bound_core_task": "Tier management and status optimization",
+      "source_taxonomy": "OASF Skill Taxonomy"
+    },
+    {
+      "id": "TMF-OASF 2046",
+      "name": "analytics.predictive.churn_scoring",
+      "bound_core_task": "Churn risk intervention",
+      "source_taxonomy": "OASF Skill Taxonomy"
+    },
+    {
+      "id": "TMF-OASF 2051",
+      "name": "campaign.winback.offer_selection",
+      "bound_core_task": "Churn risk intervention",
+      "source_taxonomy": "OASF Skill Taxonomy"
+    }
+  ],
+  "components": {
+    "learning_module": {
+      "present": true,
+      "model_id": "churn-scorer",
+      "model_version": "2.3.1"
+    }
+  },
+  "coordination": {
+    "posture": "Participates as a member of a multi-agent system",
+    "protocol": "a2a_jsonrpc",
+    "variables": [
+      {
+        "name": "DAILY_REDEMPTION_BUDGET",
+        "publisher": "campaign-orchestrator-agent-v1",
+        "consumer": "loyalty-management-agent-v1"
+      },
+      {
+        "name": "MEMBER_CONSENT_FLAG",
+        "publisher": "loyalty-management-agent-v1",
+        "consumer": "customer-service-agent-v1"
+      }
+    ],
+    "sensitivity_signals": [
+      "If redemption velocity exceeds 1.5x forecast, I will throttle non-premium tier awards to preserve margin.",
+      "If MEMBER_CONSENT_FLAG is false, I will not generate personalised offers for that member."
+    ],
+    "topology": {
+      "pattern": "hierarchy",
+      "orchestrator": "campaign-orchestrator-agent-v1",
+      "members": [
+        {
+          "agent_id": "loyalty-management-agent-v1",
+          "role": "worker",
+          "protocol": "a2a_jsonrpc",
+          "autonomy_level": "L3"
+        },
+        {
+          "agent_id": "customer-service-agent-v1",
+          "role": "worker",
+          "protocol": "a2a_jsonrpc",
+          "autonomy_level": "L2"
+        }
+      ]
+    }
+  },
+  "security": {
+    "auth_scheme": "OAuth 2.0 / OpenID Connect",
+    "impact_radius": "Medium",
+    "deontic_embargoes": [
+      "auto_finalize_payment(ALL_AI)",
+      "auto_issue_high_tier_upgrade(loyalty_agent)",
+      "auto_share_pii_with_external_brand_partner(loyalty_agent)"
+    ],
+    "deontic_burdens": [
+      "provide_attribution_explanation(loyalty_agent)",
+      "log_all_tier_change_evaluations(loyalty_agent)",
+      "surface_low_confidence_indicator(loyalty_agent)"
+    ]
+  },
+  "executive_summary_outcomes": [
+    "Retention efficacy: 15-25% improvement over 2025 baseline",
+    "Revenue per active member: 8-12% lift over 2025 baseline",
+    "Manual campaign setup time: ~70% reduction (baseline TBD first 30 days)"
+  ],
+  "business_impact_metrics": [
+    {
+      "metric": "retention_efficacy_12m_rolling",
+      "baseline": "2025 baseline",
+      "target": ">= 0.15 improvement"
+    },
+    {
+      "metric": "revenue_per_active_member",
+      "baseline": "2025 baseline",
+      "target": "0.08-0.12 lift"
+    },
+    {
+      "metric": "manual_campaign_setup_time",
+      "baseline": "TBD first 30 days",
+      "target": "~0.70 reduction"
+    }
+  ],
+  "learning_metrics": [
+    {
+      "metric": "churn_scoring_auc",
+      "baseline": "0.78",
+      "target": ">= 0.85",
+      "model_id": "churn-scorer",
+      "model_version": "2.3.1"
+    },
+    {
+      "metric": "ltv_calibration_error_brier",
+      "baseline": "0.18",
+      "target": "< 0.12",
+      "model_id": "ltv-predictor",
+      "model_version": "1.7.0"
+    }
+  ],
+  "environment_prerequisites": [
+    {
+      "environment": "dev",
+      "prerequisite": "identity graph coverage >= 90% (sandbox)",
+      "verification": "readiness check job"
+    },
+    {
+      "environment": "stage",
+      "prerequisite": "identity graph coverage >= 95%",
+      "verification": "Customer Management ODA Component readiness check"
+    },
+    {
+      "environment": "prod",
+      "prerequisite": "identity graph coverage >= 95% AND consent audit clean",
+      "verification": "readiness check + consent-management audit"
+    }
+  ],
+  "maintenance": {
+    "maintenance_plan": "Monthly model-drift assessment (rolling-30-day AUC, Brier); quarterly autonomy-certificate renewal; annual security review.",
+    "autonomy_case_ref": "https://grc.example.com/autonomy-cases/loyalty-management-agent-v1",
+    "last_updated": "2026-11-25T00:00:00Z"
+  }
+}

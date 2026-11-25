@@ -1,0 +1,15 @@
+# CI gate (stage 2) — copy to .github/workflows/ci-gate.yml in an agent-instance repo.
+name: ci-gate
+on: [pull_request]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install jsonschema pyyaml pytest
+      - run: python conformance-kit/validators/profile_lint.py examples/loyalty-agent/profile.json
+      - run: pytest conformance-kit/test-suites -q
+      # stage-2 triad cross-check when sibling artifacts are available:
+      # - run: python conformance-kit/validators/crosscheck.py --profile examples/loyalty-agent/profile.json --bootstrap <spec444 bootstrap.yaml> --card <spec445 card.json>

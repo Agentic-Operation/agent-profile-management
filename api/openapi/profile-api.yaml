@@ -1,0 +1,57 @@
+openapi: 3.1.0
+info:
+  title: Spec-443 Profile Publication & Validation API
+  version: 0.1.0
+  description: Publish, validate, and administer Spec-443 agent profiles. All artifacts join to
+    Spec-444 (agent-bootstrap-management) and Spec-445 (agent-discovery-card) on the identity fields.
+servers:
+  - url: https://api.agentic-operation.dev/v1
+paths:
+  /profiles:
+    post:
+      summary: Validate and publish a profile instance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../../schemas/profile.schema.json'
+      responses:
+        '201': {description: Profile accepted; conformance report returned}
+        '422': {description: Validation failed; violations listed}
+  /profiles/{id}:
+    get:
+      summary: Get latest profile by id
+      parameters: [{name: id, in: path, required: true, schema: {type: string}}]
+      responses: {'200': {description: Profile}, '404': {description: Not found}}
+  /profiles/{id}/versions/{version}:
+    get:
+      summary: Get a specific profile version
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: string}}
+        - {name: version, in: path, required: true, schema: {type: string}}
+      responses: {'200': {description: Profile version}, '404': {description: Not found}}
+  /profiles/{id}/validate:
+    post:
+      summary: Run profile_lint + schema validation without publishing
+      parameters: [{name: id, in: path, required: true, schema: {type: string}}]
+      responses: {'200': {description: Conformance report}, '422': {description: Violations}}
+  /profiles/{id}/conformance-report:
+    get:
+      summary: Latest conformance report (incl. triad cross-check status)
+      parameters: [{name: id, in: path, required: true, schema: {type: string}}]
+      responses: {'200': {description: Report}}
+  /profiles/{id}/status:
+    patch:
+      summary: Transition status (Draft -> In Review -> Approved -> Deprecated)
+      parameters: [{name: id, in: path, required: true, schema: {type: string}}]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties:
+                status: {enum: [Draft, In Review, Approved, Deprecated]}
+      responses: {'200': {description: Updated}, '409': {description: Illegal transition}}
