@@ -12,4 +12,21 @@ jobs:
         with: {python-version: '3.12'}
       - run: pip install jsonschema pyyaml pytest
       - run: python conformance-kit/validators/profile_lint.py examples/loyalty-agent/profile.json
+      - run: python tools/cli/spec443.py lint examples/loyalty-agent/profile.json
       - run: pytest conformance-kit/test-suites -q
+  cross-triad:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: Agentic-Operation/agent-bootstrap-management
+          path: sibling/bootstrap
+      - uses: actions/checkout@v4
+        with:
+          repository: Agentic-Operation/agent-discovery-card
+          path: sibling/card
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install pyyaml
+      - run: python conformance-kit/validators/crosscheck.py --profile examples/loyalty-agent/profile.json --bootstrap sibling/bootstrap/examples/loyalty-agent/bootstrap.yaml --card sibling/card/examples/loyalty-agent/card.json
