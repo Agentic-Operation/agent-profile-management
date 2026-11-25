@@ -20,6 +20,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
         with:
+          repository: Agentic-Operation/agent-conformance
+          path: sibling/conformance
+      - uses: actions/checkout@v4
+        with:
           repository: Agentic-Operation/agent-bootstrap-management
           path: sibling/bootstrap
       - uses: actions/checkout@v4
@@ -29,4 +33,5 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - run: pip install pyyaml
-      - run: python conformance-kit/validators/crosscheck.py --profile examples/loyalty-agent/profile.json --bootstrap sibling/bootstrap/examples/loyalty-agent/bootstrap.yaml --card sibling/card/examples/loyalty-agent/card.json
+      - run: export SPEC443_SCHEMAS=$PWD/schemas SPEC444_SCHEMAS=$PWD/sibling/bootstrap/schemas SPEC445_SCHEMAS=$PWD/sibling/card/schemas
+      - run: python sibling/conformance/validators/crosscheck.py --profile examples/loyalty-agent/profile.json --bootstrap sibling/bootstrap/examples/loyalty-agent/bootstrap.yaml --card sibling/card/examples/loyalty-agent/card.json

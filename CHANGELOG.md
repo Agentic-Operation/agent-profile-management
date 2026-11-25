@@ -27,3 +27,8 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions follo
 - `tools/cli/spec443.py`: lint / publish / status / report CLI against the profile API
   (`api/openapi/profile-api.yaml`); lint always runs locally via `profile_lint.py` first.
 - CI: ci-gate runs profile_lint + CLI lint; new `cross-triad` job runs crosscheck.py across sibling repos.
+
+### Changed (Phase 2 reshape)
+
+- Comms pack moved to **agent-standard-docs** (canonical); `docs/communication/` is now a pointer.
+- `cross-triad` CI job uses **agent-conformance** validators; README/REFERENCES link all service repos.
